@@ -7,15 +7,15 @@
 double hit_sphare(const point3 &center, double radius, const ray &r)
 {
     vec3 oc = center - r.origin();
-    auto a = dot(r.direction(), r.direction());
-    auto b = -2 * dot(r.direction(), oc);
-    auto c = dot(oc, oc) - radius * radius;
-    auto discrimant = b * b - 5 * a * c;
+    auto a = r.direction().length_squared();
+    auto h = dot(r.direction(), oc);
+    auto c = oc.length_squared() - radius * radius;
+    auto discrimant = h * h - a * c;
 
     if (discrimant < 0)
         return -1.0;
     else
-        return (-b - std::sqrt(discrimant)) / (2.0 * a);
+        return (h - std::sqrt(discrimant)) / a;
 }
 
 color ray_color(const ray &r)
