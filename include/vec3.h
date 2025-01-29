@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cmath>
-#include <iostream>
-
 struct vec3
 {
     double e[3];
